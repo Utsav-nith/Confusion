@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Media } from 'reactstrap';
+import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 import DishDetail from './DishDetailComponent';
 
 class Menu extends Component {
@@ -20,16 +20,13 @@ class Menu extends Component {
   render() {
     const menu = this.props.data.map((item, index) => {
       return (
-        <div className="col-12 mt-5" key={index} onClick={() => this.onClickHandler(item)}>
-          <Media tag="li">
-            <Media left>
-              <Media object src={item.image} alt={item.name} />
-            </Media>
-            <Media body className="ml-5">
-              <Media heading>{item.name}</Media>
-              <p>{item.description}</p>
-            </Media>
-          </Media>
+        <div className="col-12 col-md-5 m-1" key={index} >
+          <Card onClick={() => this.onClickHandler(item)}>
+          <CardImg width="200px" src={item.image} alt={item.name} />
+            <CardImgOverlay>
+              <CardTitle>{item.name}</CardTitle>
+            </CardImgOverlay>
+          </Card>
         </div>
       )
     });
@@ -37,9 +34,7 @@ class Menu extends Component {
     return (
       <div className="container">
         <div className="row">
-          <Media list>
             {menu}
-          </Media>
         </div>
         <DishDetail dish={this.state.selectedDish} />
       </div>
@@ -48,11 +43,3 @@ class Menu extends Component {
 }
 
 export default Menu;
-/*
-<Card>
-          <CardImg src={dish.image} alt={dish.name} top />
-          <CardBody>
-            <CardTitle>{dish.name}</CardTitle>
-            <CardText>{dish.description}</CardText>
-          </CardBody>
-        </Card>*/

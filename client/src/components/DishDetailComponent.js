@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, ListGroup, ListGroupItem } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
 class DishDetail extends React.Component {
   renderDish(dish) {
@@ -23,17 +23,17 @@ class DishDetail extends React.Component {
     if (comments != null) {
       const commentList = comments.map((comment) => {
         return (
-          <ListGroupItem key={comment.id}>
+          <li key={comment.id}>
             <p>{comment.comment}</p>
             <p>-- {comment.author}, {new Date(comment.date).toLocaleDateString()}</p>
-          </ListGroupItem>
+          </li>
         );
       });
 
       return (
         <div>
           <h4>Comments</h4>
-          <ListGroup>{commentList}</ListGroup>
+          <ul className="list-unstyled">{commentList}</ul>
         </div>
       );
     } else {
