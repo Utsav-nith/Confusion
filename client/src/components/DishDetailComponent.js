@@ -47,7 +47,7 @@ class DishDetail extends React.Component {
   }
 
   render() {
-    const { dish } = this.props;
+    const { dish,comments } = this.props;
 
     return (
       <div className="container">
@@ -56,7 +56,7 @@ class DishDetail extends React.Component {
             {this.renderDish(dish)}
           </div>
           <div className="col-12 col-md-5 m-1">
-            {this.renderComments(dish && dish.comments)}
+            {this.renderComments(dish && comments)}
             <CommentForm />
           </div>
         </div>
