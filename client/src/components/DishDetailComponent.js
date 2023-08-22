@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle ,ListGroup,ListGroupItem} from 'reactstrap';
+import CommentForm from './CommentForm';
 
 class DishDetail extends React.Component {
   renderDish(dish) {
@@ -21,12 +22,16 @@ class DishDetail extends React.Component {
 
   renderComments(comments) {
     if (comments != null) {
+      const dishComments = comments.filter(comment => comment.dishId === this.props.dish.id);
       const commentList = comments.map((comment) => {
+        
         return (
+          
           <li key={comment.id}>
             <p>{comment.comment}</p>
             <p>-- {comment.author}, {new Date(comment.date).toLocaleDateString()}</p>
           </li>
+         
         );
       });
 
@@ -52,6 +57,7 @@ class DishDetail extends React.Component {
           </div>
           <div className="col-12 col-md-5 m-1">
             {this.renderComments(dish && dish.comments)}
+            <CommentForm />
           </div>
         </div>
       </div>
