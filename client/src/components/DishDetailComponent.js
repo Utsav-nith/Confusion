@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle ,ListGroup,ListGroupItem} from 'reactstrap';
 import CommentForm from './CommentForm';
-
+import { Loading } from './LoadingComponent';
 class DishDetail extends React.Component {
   renderDish(dish) {
     if (dish != null) {
@@ -46,22 +46,42 @@ class DishDetail extends React.Component {
   }
 
   render() {
-    const { dish,comments,addComment } = this.props;
+    const { dish,comments,addComment ,isLoading, errMess} = this.props;
 
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col-12 col-md-5 m-1">
-            {this.renderDish(dish)}
+      if (isLoading) {
+        return (
+          <div className="container">
+            <div className="row">
+              <Loading />
+            </div>
           </div>
-          <div className="col-12 col-md-5 m-1">
-            {this.renderComments(comments)}
-            <CommentForm addComment={addComment}/>
+        );
+      } else if (errMess) {
+        return (
+          <div className="container">
+            <div className="row">
+              <h4>{errMess}</h4>
+            </div>
           </div>
-        </div>
-      </div>
-    );
+        );
+      } else if (dish != null) {
+        return (
+          <div className="container">
+            <div className="row">
+              <div className="col-12 col-md-5 m-1">
+                {this.renderDish(dish)}
+              </div>
+              <div className="col-12 col-md-5 m-1">
+                {this.renderComments(comments)}
+                <CommentForm addComment={addComment} />
+              </div>
+            </div>
+          </div>
+        );
+      } else {
+        return <div></div>;
+      }
+    }
   }
-}
-
-export default DishDetail;
+  
+  export default DishDetail;
