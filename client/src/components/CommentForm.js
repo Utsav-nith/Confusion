@@ -6,7 +6,8 @@ const required = (val) => val && val.length;
 const minLength = (len) => (val) => val && val.length >= len;
 const maxLength = (len) => (val) => !val || val.length <= len;
 
-function CommentForm() {
+function CommentForm(props) {
+  const {addComment, dishId}=props;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
@@ -14,8 +15,9 @@ function CommentForm() {
   };
 
   const handleSubmit = (values) => {
-    console.log('Current state is: ' + JSON.stringify(values));
-    alert('Current state is: ' + JSON.stringify(values));
+    // console.log('Current state is: ' + JSON.stringify(values));
+    // alert('Current state is: ' + JSON.stringify(values));
+    addComment(dishId,values.rating, values.author, values.comment);
   };
 
   return (
