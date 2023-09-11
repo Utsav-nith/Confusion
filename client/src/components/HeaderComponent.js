@@ -1,27 +1,28 @@
-import React,{useState,useRef} from "react";
+import React, { useState, useRef } from "react";
 import { Navbar, NavbarBrand, Collapse, NavItem, Nav, NavbarToggler, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
 import { NavLink } from "react-router-dom";
+import { baseUrl } from "../shared/baseUrl";
 
 function Header(props) {
-  const [open,setOpen]=useState(false);
-  const [isModalOpen,setModalOpen]=useState(false);
+  const [open, setOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
 
-  var username=useRef();
-  var password=useRef();
-  var remember=useRef();
-  
-  const handleNavClick=(e)=>{
+  var username = useRef();
+  var password = useRef();
+  var remember = useRef();
+
+  const handleNavClick = (e) => {
     setOpen(!open);
   };
-  const toggleLoginModal=()=>{
+  const toggleLoginModal = () => {
     setModalOpen(!isModalOpen);
   };
-  const handleLogin=(e)=>{
+  const handleLogin = (e) => {
     e.preventDefault();
-    const user=username.value;
-    const pass=password.value;
-    const remem=remember.checked;
-    
+    const user = username.value;
+    const pass = password.value;
+    const remem = remember.checked;
+
     console.log(user, pass, remem);
   };
   return (
@@ -32,15 +33,15 @@ function Header(props) {
           <Form onSubmit={handleLogin}>
             <FormGroup>
               <Label htmlFor="username">Username</Label>
-              <Input type="text" id="username" name="username" innerRef={(input)=>username=input}/>
+              <Input type="text" id="username" name="username" innerRef={(input) => username = input} />
             </FormGroup>
             <FormGroup>
               <Label htmlFor="password">Password</Label>
-              <Input type="password" id="password" name="password" innerRef={(input)=>password=input}/>
+              <Input type="password" id="password" name="password" innerRef={(input) => password = input} />
             </FormGroup>
             <FormGroup check>
               <Label check>
-                <Input type="checkbox" name="remember" innerRef={(input)=>remember=input}/>
+                <Input type="checkbox" name="remember" innerRef={(input) => remember = input} />
                 Remember Me
               </Label>
             </FormGroup>
@@ -51,7 +52,7 @@ function Header(props) {
       <Navbar dark expand="md">
         <div className="container">
           <NavbarToggler onClick={() => handleNavClick()} />
-          <NavbarBrand href="#" className="mr-auto"><img src="./assets/images/logo.png" alt="logo" height="30" width="41" /></NavbarBrand>
+          <NavbarBrand href="#" className="mr-auto"><img src={baseUrl + "/images/logo.png"} alt="logo" height="30" width="41" /></NavbarBrand>
           <Collapse navbar isOpen={open}>
             <Nav navbar>
               <NavItem>
