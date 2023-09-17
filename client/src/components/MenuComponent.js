@@ -3,6 +3,7 @@ import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 import DishDetail from './DishDetailComponent';
 import { Link } from "react-router-dom";
 import { Loading } from './LoadingComponent'; // Import the Loading component
+import { baseUrl } from '../shared/baseUrl'; // Import baseUrl
 
 function Menu(props) {
   const menu = props.dishes.dishes.map((item, index) => {
@@ -10,7 +11,7 @@ function Menu(props) {
       <div className="col-12 col-md-5 m-1" key={index} >
         <Card>
           <Link to={`/menu/${item.id}`}>
-            <CardImg width="200px" src={item.image} alt={item.name} />
+          <CardImg width="100%" src={baseUrl + item.image} alt={item.name} />
             <CardImgOverlay>
               <CardTitle>{item.name}</CardTitle>
             </CardImgOverlay>
